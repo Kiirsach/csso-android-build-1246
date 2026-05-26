@@ -1,0 +1,39 @@
+//========= Copyright Valve Corporation, All rights reserved. ============//
+//
+// Purpose: 
+//
+//=============================================================================//
+
+#include "cbase.h"
+#include "weapon_csbasegun.h"
+
+#if defined( CLIENT_DLL )
+	#define CWeaponMP7 C_WeaponMP7
+#endif
+
+
+class CWeaponMP7 : public CWeaponCSBaseGun
+{
+public:
+	DECLARE_CLASS( CWeaponMP7, CWeaponCSBaseGun );
+	DECLARE_NETWORKCLASS(); 
+	DECLARE_PREDICTABLE();
+	
+	CWeaponMP7() {}
+
+	virtual CSWeaponID GetCSWeaponID( void ) const		{ return WEAPON_MP7; }
+
+private:
+	CWeaponMP7( const CWeaponMP7 & );
+};
+
+IMPLEMENT_NETWORKCLASS_ALIASED( WeaponMP7, DT_WeaponMP7 )
+
+BEGIN_NETWORK_TABLE( CWeaponMP7, DT_WeaponMP7 )
+END_NETWORK_TABLE()
+
+BEGIN_PREDICTION_DATA( CWeaponMP7 )
+END_PREDICTION_DATA()
+
+LINK_ENTITY_TO_CLASS( weapon_mp7, CWeaponMP7 );
+PRECACHE_WEAPON_REGISTER( weapon_mp7 );
